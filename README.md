@@ -1,0 +1,2 @@
+# yetgim-dev
+ödev
