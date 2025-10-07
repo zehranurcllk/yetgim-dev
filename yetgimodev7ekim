@@ -1,0 +1,79 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct  7 22:55:48 2025
+
+@author: Zehranur
+"""
+#VKI
+boy = float(input("Boyunuzu metre cinsinden girin: "))
+kilo = float(input("Kilonuzu kilogram cinsinden girin: "))
+
+vki = kilo / (boy ** 2)
+
+if vki < 18.5:
+    durum = "Zayıf"
+elif 18.5 <= vki < 25:
+    durum = "Normal"
+elif 25 <= vki < 30:
+    durum = "Fazla kilolu"
+else:
+    durum = "Obez"
+
+print(f"VKİ: {vki:.2f} - Durum: {durum}")
+
+
+
+
+
+#BASİT HESAP MAK
+sayi1 = float(input("Birinci sayı: "))
+sayi2 = float(input("İkinci sayı: "))
+islem = input("İşlem (+, -, *, /): ")
+
+if islem == "+":
+    sonuc = sayi1 + sayi2
+    print("Sonuç:", sonuc)
+elif islem == "-":
+    sonuc = sayi1 - sayi2
+    print("Sonuç:", sonuc)
+elif islem == "*":
+    sonuc = sayi1 * sayi2
+    print("Sonuç:", sonuc)
+elif islem == "/":
+    if sayi2 != 0:
+        sonuc = sayi1 / sayi2
+        print("Sonuç:", sonuc)
+    else:
+        print("Hata: Sıfıra bölünemez!")
+else:
+    print("Geçersiz işlem!")
+
+
+
+
+"""  "10" + 5 işlemi neden hata verir? Nasıl düzeltilir?
+"10" bir string, 5 ise bir integer türündedir.
+Python, string ile integer’ı doğrudan toplayamaz, bu yüzden TypeError verir.
+Veri tiplerini aynı hale getirmeliyiz.
+Sayı toplamak istiyorsak:
+sonuc = int("10") + 5   # 15
+Metin birleştirmek istiyorsak:
+sonuc = "10" + str(5)   # "105""""
+
+
+"""
+ 0.1 + 0.2 == 0.3 ifadesi neden False döner?
+
+Çünkü bilgisayarlar ondalık sayıları ikilik (binary) sistemde tam olarak saklayamaz."""
+
+
+
+
+"""and ve or operatörlerinin öncelik sırası nedir?
+
+and operatörü or’dan önceliklidir.
+Yani önce and işlemi yapılır, sonra or."""
+
+
+
+"""Çünkü input() fonksiyonu kullanıcının klavyeden yazdığı her şeyi metin olarak alır."""
