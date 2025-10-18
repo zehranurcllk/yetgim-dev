@@ -1,0 +1,687 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Oct 18 23:49:40 2025
+
+@author: Zehranur
+"""
+"""Soru 1: Asal Sayı Kontrolü (Kolay) Açıklama: Bir is_prime(number)fonksiyon yazın.
+ Bu fonksiyon, parametre olarak pozitif bir tam sayı almalı ve bu sayının asal olup olmadığı belirtilmemelidir. 
+ Bir sayı, sadece 1'e ve kendisi tam olarak bölünebiliyorsa asaldır. Fonksiyon, sayı asalsa True, Falsedönmemelidir.
+ Kısıtlamalar: numberher zaman pozitif bir tam sayı olacaktır. 1, asal bir sayı olarak kabul edilmez. 
+ Örnek Girdi/Çıktı: is_prime(7) → True is_prime(10) → False is_prime(1) → False is_prime(97) → True"""
+
+"""def is_prime(number):
+    if number == 1:
+        return False
+
+    if number == 2:
+        return True
+
+    if number > 2 and number % 2 == 0:
+        return False
+    for i in range(3, int(number ** 0.5) + 1, 2):
+        if number % i == 0:
+            return False
+
+    return True
+
+"""
+
+
+"""Soru 2: Palindromik Kelimeleri Bulma (Kolay)
+Açıklama: Bir find_palindromes(word_list)fonksiyon yazın. Bu fonksiyon, bir string listesi ( word_list) almalı ve bu listedeki palindromik (tersten okunuşu aynı olan) kelimeleri içeren yeni bir liste döndürmelidir. Karşılaştırma büyük/küçük harflere duyarlıdır.
+
+Kısıtlamalar:
+
+word_listsadece alfabetik karakterler içeren dizelerden oluşur.
+Örnek Girdi/Çıktı:
+
+find_palindromes(["level", "python", "radar", "kayak", "hello"])
+→ ["level", "radar", "kayak"]
+
+find_palindromes(["Anna", "world", "Madam"])
+→ ["Anna", "Madam"]"""
+
+"""def find_palindromes(word_list):
+    palindromes = []
+    for word in word_list:
+        if word == word[::-1]:  # Kelimenin tersi kendisine eşit mi
+            palindromes.append(word)
+    return palindromes
+
+"""
+
+
+
+"""Soru 3: Fibonacci Sayılarını Üreten Fonksiyon (Orta)
+Açıklama: Bir fibonacci(n)fonksiyon yazın. Bu fonksiyon, parametre olarak bir tam sayı nalmalı ve ilk nFibonacci sayısını içeren bir liste döndürmemelidir. Fibonacci dizisi, her sayısının kendisinden önceki iki sayının toplamı olduğu bir dizidir: 0, 1, 1, 2, 3, 5, 8, 13, ...
+
+Kısıtlamalar:
+
+n >= 0olacaktır.
+n = 0için boş liste döndürün.
+n = 1için [0]döndürün.
+Örnek Girdi/Çıktı:
+
+"""
+
+
+"""def fibonacci(n):
+    if n == 0:
+        return []
+    if n == 1:
+        return [0]
+
+    fib_list = [0, 1]
+
+    while len(fib_list) < n:
+        fib_list.append(fib_list[-1] + fib_list[-2]) 
+
+    return fib_list
+
+"""
+
+
+"""Soru 4: İki Dinlenin Kesişimini Bulma (Orta)
+Açıklama: Bir intersection(list1, list2)fonksiyon yazın. Bu fonksiyon, iki liste almalı ve her iki listede bulunan öğeleri içeren yeni bir liste döndürmelidir. Sonuç olarak, onun elemanı yalnızca bir kez bulunmalıdır ve sıralamada önemli değildir.
+
+Kısıtlamalar:
+
+Listeler herhangi bir veri tipini birleştirir.
+Boş listeleyici için boş listeyi döndürün.
+Örnek Girdi/Çıktı:
+
+intersection([1, 2, 3, 4], [3, 4, 5, 6])
+→ [3, 4]
+
+intersection(["a", "b", "c"], ["c", "d", "e"])
+→ ["c"]
+
+intersection([1, 2, 2, 3], [2, 2, 3, 4])
+→ [2, 3]"""
+
+"""def intersection(list1, list2):
+    result = []
+
+    for item in list1:
+        if item in list2 and item not in result:
+            result.append(item)
+
+    return result
+
+"""
+"""Soru 5: Fonksiyon Sonuçlarını Önbelleğe Alan Dekoratör (Zor)
+Açıklama: Bir cache_resultsadı dekoratör (decorator) fonksiyon yazın. Bu dekoratör, çoğalma olarak oluşan bir fonksiyonun ortaya çıkmasının önbelleğe alınması gerekir. Dekore edilen fonksiyonun aynı anda ortaya çıkmasıyla tekrar çağrıldığında, fonksiyonun tekrar çalıştırılması yerine önbellekteki sonuç devam etmelidir. Bu, özellikle programlaması fonksiyonları için performansı arttırır.
+
+İpucu: Önbelleği (önbellek) bir sözlük (sözlük) içinde tutabilirsiniz. Anahtarlar, fonksiyonun ortaya çıkışının bir tuple'ı olabilir.
+
+Örnek Kullanım:
+
+@cache_results
+def slow_fibonacci(n):
+    if n < 2:
+        return n
+    return slow_fibonacci(n-1) + slow_fibonacci(n-2)
+
+# İlk çağrı (hesaplama yapar)
+print(slow_fibonacci(10))  # Hesaplanır
+
+# İkinci çağrı (önbellekten döner, çok daha hızlıdır)
+print(slow_fibonacci(10))  # Önbellekten gelir"""
+
+"""def cache_results(func):
+    cache = {} 
+
+    def wrapper(*args):
+        if args in cache:      # Daha önce hesaplandı mı?
+            return cache[args] # Önbellekten döndür
+        result = func(*args)   # Hesapla
+        cache[args] = result   # Önbelleğe kaydet
+        return result
+
+    return wrapper"""
+
+"""Soru 6: Çoklu Argüman Alan Matematiksel İşlem Fonksiyonu (Orta)
+Açıklama: Bir calculate(operation, *args)fonksiyon yazın. Bu fonksiyon, ilk parametre olarak bir işlem türü ( "sum", "product", "average", "max", "min") almalı ve ardından değişen sayıda dijital pigmentasyona tabidir. Fonksiyonlar, belirtilen tüm işlemlere bağlı olarak sonuç doğurmalıdır.
+
+Kısıtlamalar:
+
+En az bir dijitalleşmenin değiştirilmesi.
+Geçersiz işlem türünü Nonedöndürmek için.
+Örnek Girdi/Çıktı:
+
+calculate("sum", 1, 2, 3, 4)      → 10
+calculate("product", 2, 3, 4)     → 24
+calculate("average", 10, 20, 30)  → 20.0
+calculate("max", 5, 15, 10)       → 15
+calculate("min", 5, 15, 10)       → 5
+calculate("invalid", 1, 2)        → None"""
+
+"""def calculate(operation, *args):
+    if not args: 
+        return None
+
+    if operation == "sum":
+        return sum(args)
+    elif operation == "product":
+        result = 1
+        for num in args:
+            result *= num
+        return result
+    elif operation == "average":
+        return sum(args) / len(args)
+    elif operation == "max":
+        return max(args)
+    elif operation == "min":
+        return min(args)
+    else:
+        return None """
+    
+    
+"""Soru 7: Metin Analiz Fonksiyonu (Zor)
+Açıklama: Bir analyze_text(text)fonksiyon yazın. Bu fonksiyon, bir metin almalı ve aşağıdaki bilgileri içeren bir sözlük döndürmelidir:
+
+"char_count": Toplam karakter sayısı (boşluklar dahil)
+"word_count": Toplam kelime sayısı
+"sentence_count": Toplam cümle sayısı ( ., !, ?ile biten)
+"most_common_word": En sık geçen kelime (büyük/küçük harf duyarlı değildir)
+"average_word_length": uzunluk kelime uzunluğu (float)
+Kısıtlamalar:
+
+Noktalama şifreleri kelime sayımına dahil edilmemelidir.
+Boş metin için uygun değerler değerleri döndürür.
+Örnek Girdi/Çıktı:"""   
+"""import string
+from collections import Counter
+
+def analyze_text(text):
+    # Boş metin kontrolü
+    if not text:
+        return {
+            "char_count": 0,
+            "word_count": 0,
+            "sentence_count": 0,
+            "most_common_word": None,
+            "average_word_length": 0.0
+        }
+
+    # Karakter sayısı (boşluk dahil)
+    char_count = len(text)
+
+    # Cümle sayısı (., !, ? ile biten)
+    sentence_count = sum(text.count(c) for c in ".!?")
+
+    # Noktalama işaretlerini kelimelerden temizle
+    translator = str.maketrans('', '', string.punctuation)
+    words = [w.translate(translator) for w in text.split() if w.translate(translator)]
+
+    word_count = len(words)
+
+    # Kelimeleri küçük harfe çevirip en sık geçen kelimeyi bul
+    lower_words = [w.lower() for w in words]
+    most_common_word = None
+    if lower_words:
+        most_common_word = Counter(lower_words).most_common(1)[0][0]
+
+    # Ortalama kelime uzunluğu
+    average_word_length = sum(len(w) for w in words) / word_count if word_count else 0.0
+
+    return {
+        "char_count": char_count,
+        "word_count": word_count,
+        "sentence_count": sentence_count,
+        "most_common_word": most_common_word,
+        "average_word_length": average_word_length
+    }"""
+
+
+"""Soru 8: Banka Hesabı Sınıfı (Kolay)
+Açıklama: Bir BankaHesabibileşimi oluşturur. Bu sınıf aşağıdaki niteliklere ve metotlara sahip olmalıdır:
+
+Nitelikler:
+
+hesap_sahibi(string): Hesabının sahibinin adı.
+bakiye(float): Mevcut para miktarını hesaplayın. 0 olmalıdır.
+Metotlar:
+
+__init__(self, hesap_sahibi): Hesap sahibinin kendi adına bir hesap oluşturur.
+para_yatir(self, miktar): Hesaba belirtilen miktarda para yatırır ve güncel bakiyeyi yazdırır.
+para_cek(self, miktar): Hesaptan belirtilen miktarda para çeker. Yeterli bakiye varsa, işlem süreleri ve güncel bakiyeyi yazdırır. Yeterli bakiye yoksa, bir uyarı mesajı yazdırılır.
+bakiye_goster(self): Mevcut bakiyeyi yazdırır.
+Kısıtlamalar:
+
+Yatırılan ve çekilen miktarlarda pozitif sayılar olmalıdır.
+Örnek Kullanım:
+
+hesap = BankaHesabi("Ali Veli")
+hesap.para_yatir(1000)
+hesap.para_cek(500)
+hesap.para_cek(600)  # Yetersiz bakiye uyarısı vermeli
+hesap.bakiye_goster()"""
+
+"""class BankaHesabi:
+    def __init__(self, hesap_sahibi):
+        self.hesap_sahibi = hesap_sahibi
+        self.bakiye = 0.0  # Başlangıç bakiyesi
+
+    def para_yatir(self, miktar):
+        if miktar > 0:
+            self.bakiye += miktar
+            print(f"{miktar} TL yatırıldı. Güncel bakiye: {self.bakiye} TL")
+        else:
+            print("Lütfen pozitif bir miktar girin.")
+
+    def para_cek(self, miktar):
+        if miktar <= 0:
+            print("Lütfen pozitif bir miktar girin.")
+        elif miktar > self.bakiye:
+            print("Yetersiz bakiye!")
+        else:
+            self.bakiye -= miktar
+            print(f"{miktar} TL çekildi. Güncel bakiye: {self.bakiye} TL")
+
+    def bakiye_goster(self):
+        print(f"Mevcut bakiye: {self.bakiye} TL")"""
+        
+"""Soru 9: Öğrenci Not Sistemi (Kolay)
+Açıklama: Bir Ogrencibileşimi oluşturur. Bu sınıf aşağıdaki özelliklere sahip olmalıdır:
+
+Nitelikler:
+
+ad(string): Öğrencinin adı.
+soyad(string): Öğrencinin soyadı.
+notlar(liste): Öğrencilerin olmayanlarını içeren liste (başlangıçta boş).
+Metotlar:
+
+__init__(self, ad, soyad): Öğrenciyi oluşturur.
+not_ekle(self, not): Öğrencinin notlar listesinde yeni bir not ekler (0-100 arası).
+ortalama_hesapla(self): Öğrencinin hesapları anlamına gelmez ve döner.
+harf_notu(self): ortalamaya göre harf notu döner:
+90-100: "AA"
+80-89: "BA"
+70-79: "BB"
+60-69: "CB"
+50-59: "CC"
+0-49: "FF"
+Örnek Kullanım:
+
+ogrenci = Ogrenci("Ayşe", "Yılmaz")
+ogrenci.not_ekle(85)
+ogrenci.not_ekle(90)
+ogrenci.not_ekle(78)
+print(ogrenci.ortalama_hesapla())  # 84.33
+print(ogrenci.harf_notu())         # BA"""
+
+"""class Ogrenci:
+    def __init__(self, ad, soyad):
+        self.ad = ad
+        self.soyad = soyad
+        self.notlar = []  # Başlangıçta boş
+
+    def not_ekle(self, not_degeri):
+        if 0 <= not_degeri <= 100:
+            self.notlar.append(not_degeri)
+        else:
+            print("Lütfen 0-100 arasında bir not girin.")
+
+    def ortalama_hesapla(self):
+        if not self.notlar:
+            return 0.0
+        return round(sum(self.notlar) / len(self.notlar), 2)
+
+    def harf_notu(self):
+        ort = self.ortalama_hesapla()
+        if 90 <= ort <= 100:
+            return "AA"
+        elif 80 <= ort <= 89:
+            return "BA"
+        elif 70 <= ort <= 79:
+            return "BB"
+        elif 60 <= ort <= 69:
+            return "CB"
+        elif 50 <= ort <= 59:
+            return "CC"
+        else:
+            return "FF"""
+
+"""Soru 10: Kütüphane Yönetim Sistemi (Orta)
+Açıklama: Basit bir kütüphane yönetim sistemi Kitapve Kutuphanesınıflarını oluşturmak için.
+
+KitapSınıfı:
+
+Nitelikler: baslik , yazar, isbn.
+Metot: __str__(self) yöntem, "'Başlık' by Yazar (ISBN: ...)"format bir string döndürmemelidir.
+KutuphaneSınıfı:
+
+Nitelikler: kitaplar (başlangıçta boş bir liste).
+Metotlar:
+kitap_ekle(self, kitap): Kütüphaneye yeni bir Kitapnesne eklenir.
+kitap_ara(self, baslik): Başlığa göre kitap arar ve bulursa Kitapnesnesini döner, Nonedeğişirsa biter.
+kitap_odunc_ver(self, baslik): Başlığa göre bir kitap kütüphanesinden kaldırır. Kitap mevcutsa, f"'{baslik}' ödünç verildi."mesaj yazdırılır. Mevcut değil, f"'{baslik}' kütüphanede bulunamadı."mesaj yazdırılır.
+mevcut_kitaplari_goster(self): Kütüphanedeki tüm kitaplar listler.
+Örnek Kullanım:
+
+kitap1 = Kitap("Sefiller", "Victor Hugo", "978-1234567890")
+kitap2 = Kitap("1984", "George Orwell", "978-0987654321")
+
+kutuphane = Kutuphane()
+kutuphane.kitap_ekle(kitap1)
+kutuphane.kitap_ekle(kitap2)
+kutuphane.mevcut_kitaplari_goster()
+kutuphane.kitap_odunc_ver("Sefiller")
+kutuphane.mevcut_kitaplari_goster()"""
+
+"""class Kitap:
+    def __init__(self, baslik, yazar, isbn):
+        self.baslik = baslik
+        self.yazar = yazar
+        self.isbn = isbn
+
+    def __str__(self):
+        return f"'{self.baslik}' by {self.yazar} (ISBN: {self.isbn})"
+
+
+class Kutuphane:
+    def __init__(self):
+        self.kitaplar = []
+
+    def kitap_ekle(self, kitap):
+        self.kitaplar.append(kitap)
+
+    def kitap_ara(self, baslik):
+        for kitap in self.kitaplar:
+            if kitap.baslik == baslik:
+                return kitap
+        return None
+
+    def kitap_odunc_ver(self, baslik):
+        kitap = self.kitap_ara(baslik)
+        if kitap:
+            self.kitaplar.remove(kitap)
+            print(f"'{baslik}' ödünç verildi.")
+        else:
+            print(f"'{baslik}' kütüphanede bulunamadı.")
+
+    def mevcut_kitaplari_goster(self):
+        if not self.kitaplar:
+            print("Kütüphanede kitap yok.")
+        else:
+            for kitap in self.kitaplar:
+                print(kitap)    """
+                
+          
+"""Soru 11: Araç Kiralama Sistemi ve Kalitım (Orta)
+Açıklama: Bir araç kiralama sistemi için kalıtım kullanarak Aracve Otomobilsınıflarını Motorsiklettasarlayın.
+
+Arac(Temel Sınıf):
+
+Nitelikler: marka , model, gunluk_ucret.
+Yöntem: bilgileri_goster(self) : Aracın temel alınması gereken bir yöntem.
+Otomobil(Alt Sınıf):
+
+Aracsınıftan kalıtım almalıdır.
+Ek Nitelik: kapi_sayisi .
+bilgileri_goster(self)Yöntemi geçersiz kılarak kapı sayısını da yazdırmalıdır.
+super()Üst sınıf yöntemini kullanarak çağrılmalıdır.
+Motorsiklet(Alt Sınıf):
+
+Aracsınıftan kalıtım almalıdır.
+Ek Nitelik: motor_hacmi (cc olarak).
+bilgileri_goster(self)yöntemini geçersiz kılarak motor hacmini de yazdırmalıdır.
+super()Üst sınıf yöntemini kullanarak çağrılmalıdır.
+Örnek Kullanım:
+
+oto = Otomobil("Toyota", "Corolla", 500, 4)
+motor = Motorsiklet("Yamaha", "R1", 800, 1000)
+
+oto.bilgileri_goster()
+motor.bilgileri_goster()"""
+
+"""class Arac:
+    def __init__(self, marka, model, gunluk_ucret):
+        self.marka = marka
+        self.model = model
+        self.gunluk_ucret = gunluk_ucret
+
+    def bilgileri_goster(self):
+        print(f"Marka: {self.marka}, Model: {self.model}, Günlük Ücret: {self.gunluk_ucret} TL")
+
+class Otomobil(Arac):
+    def __init__(self, marka, model, gunluk_ucret, kapi_sayisi):
+        super().__init__(marka, model, gunluk_ucret)
+        self.kapi_sayisi = kapi_sayisi
+
+    def bilgileri_goster(self):
+        super().bilgileri_goster()
+        print(f"Kapı Sayısı: {self.kapi_sayisi}")
+
+class Motorsiklet(Arac):
+    def __init__(self, marka, model, gunluk_ucret, motor_hacmi):
+        super().__init__(marka, model, gunluk_ucret)
+        self.motor_hacmi = motor_hacmi
+
+    def bilgileri_goster(self):
+        super().bilgileri_goster()
+        print(f"Motor Hacmi: {self.motor_hacmi} cc")    """
+
+
+"""Soru 12: E-ticaret Sistemi ve Kalıtım (Zor)
+Açıklama: Bir e-ticaret sistemi için kalıtım (miras) kullanarak Urunve ElektronikUrunsınıflarını GiyimUrunutasarlayın.
+
+Urun(Temel Sınıf):
+
+Nitelikler: urun_id , isim, fiyat.
+Yöntem: bilgileri_goster(self) : Ürünün temel öğelerini yazdıran bir yöntem.
+ElektronikUrun(Alt Sınıf):
+
+Urunsınıftan kalıtım almalıdır.
+Ek Nitelik: garanti_suresi (yıl olarak).
+bilgileri_goster(self)Yöntemi geçersiz kılarak garanti süresini de yazdırmalıdır.
+super()kullanılmalıdır.
+GiyimUrunu(Alt Sınıf):
+
+Urunsınıftan kalıtım almalıdır.
+Ek Nitelikler: beden , renk.
+bilgileri_goster(self)Yöntemi geçersiz kılarak boyut ve renk kaydedilmelidir.
+super()kullanılmalıdır.
+Örnek Kullanım:
+
+laptop = ElektronikUrun(1, "Laptop", 15000, 2)
+tshirt = GiyimUrunu(2, "T-Shirt", 250, "M", "Mavi")
+
+laptop.bilgileri_goster()
+tshirt.bilgileri_goster()"""
+
+"""class Urun:
+    def __init__(self, urun_id, isim, fiyat):
+        self.urun_id = urun_id
+        self.isim = isim
+        self.fiyat = fiyat
+
+    def bilgileri_goster(self):
+        print(f"ID: {self.urun_id}, İsim: {self.isim}, Fiyat: {self.fiyat} TL")
+
+class ElektronikUrun(Urun):
+    def __init__(self, urun_id, isim, fiyat, garanti_suresi):
+        super().__init__(urun_id, isim, fiyat)
+        self.garanti_suresi = garanti_suresi
+
+    def bilgileri_goster(self):
+        super().bilgileri_goster()
+        print(f"Garanti Süresi: {self.garanti_suresi} yıl")
+
+class GiyimUrunu(Urun):
+    def __init__(self, urun_id, isim, fiyat, beden, renk):
+        super().__init__(urun_id, isim, fiyat)
+        self.beden = beden
+        self.renk = renk
+
+    def bilgileri_goster(self):
+        super().bilgileri_goster()
+        print(f"Beden: {self.beden}, Renk: {self.renk}")"""                  
+    
+
+"""Soru 13: Dikdörtgen Sınıfı ve @property (Orta)
+Açıklama: Bir Dikdortgenbileşimi oluşturur. Bu sınıf, @propertydekoratörünü kullanarak hesaplanmış nitelikler içermelidir.
+
+Nitelikler:
+
+genislik(özel: _genislik)
+yukseklik(özel: _yukseklik)
+Property Metotları:
+
+genislikve yukseklikiçin getter ve setter yöntemleri (negatif değerleri engellemeli).
+alan: Dikdörtgenin yasağı hesaplayan salt okunur özelliktedir.
+cevre: Dikdörtgenin çevresini hesaplayan salt okunur özelliktedir.
+Metotlar:
+
+__init__(self, genislik, yukseklik): Dikdörtgeni oluşturur.
+Örnek Kullanım:
+
+dikdortgen = Dikdortgen(5, 10)
+print(dikdortgen.alan)    # 50
+print(dikdortgen.cevre)   # 30
+
+dikdortgen.genislik = 8
+print(dikdortgen.alan)    # 80
+
+# dikdortgen.genislik = -5  # Hata vermeli"""
+
+"""class Dikdortgen:
+    def __init__(self, genislik, yukseklik):
+        self._genislik = None
+        self._yukseklik = None
+        self.genislik = genislik     
+        self.yukseklik = yukseklik    
+
+    # Genislik property
+    @property
+    def genislik(self):
+        return self._genislik
+
+    @genislik.setter
+    def genislik(self, value):
+        if value < 0:
+            raise ValueError("Genişlik negatif olamaz!")
+        self._genislik = value
+
+    # Yukseklik property
+    @property
+    def yukseklik(self):
+        return self._yukseklik
+
+    @yukseklik.setter
+    def yukseklik(self, value):
+        if value < 0:
+            raise ValueError("Yükseklik negatif olamaz!")
+        self._yukseklik = value
+
+    # Alan 
+    @property
+    def alan(self):
+        return self.genislik * self.yukseklik
+
+    # Cevre 
+    @property
+    def cevre(self):
+        return 2 * (self.genislik + self.yukseklik)"""
+
+
+"""Soru 14: Çalışan Yönetim Sistemi ve Çok Biçimlilik (Zor)
+Açıklama: Bir şirket için çalışan yönetim sisteminin oluşturulması. Calisantemel sınıftan türetilen TamZamanlive YariZamanlisınıfları oluşturur. Çok biçimlilik (polimorfizm) kullanarak farklı çalışan tiplerinin maaş programlamalarını gerçekleştirin.
+
+Calisan(Temel Sınıf):
+
+Nitelikler: ad , soyad, calisan_id.
+Yöntem: maas_hesapla(self) : Soyut bir ders (alt sınıflar tarafından geçersiz kılınır).
+TamZamanli(Alt Sınıf):
+
+Ek Nitelik: aylik_maas .
+maas_hesapla(self)yöntemi geçersiz kılarak aylık maaşı döndürmemelidir.
+YariZamanli(Alt Sınıf):
+
+Ek Nitelikler: saat_ucreti , calisilan_saat.
+maas_hesapla(self)Yöntemi geçersiz kılarak saat_ucreti * calisilan_saatprogramlamasını yapmalıdır.
+Ek Fonksiyon:
+
+toplam_maas_hesapla(calisanlar): Bir çalışan listesi, tüm çalışanların toplam maaşını hesaplar.
+Örnek Kullanım:
+
+calisan1 = TamZamanli("Ali", "Veli", 1001, 10000)
+calisan2 = YariZamanli("Ayşe", "Demir", 1002, 50, 80)
+
+calisanlar = [calisan1, calisan2]
+print(toplam_maas_hesapla(calisanlar))  # 14000"""
+
+
+"""from abc import ABC, abstractmethod
+
+class Calisan(ABC):
+    def __init__(self, ad, soyad, calisan_id):
+        self.ad = ad
+        self.soyad = soyad
+        self.calisan_id = calisan_id
+
+    @abstractmethod
+    def maas_hesapla(self):
+        pass
+
+class TamZamanli(Calisan):
+    def __init__(self, ad, soyad, calisan_id, aylik_maas):
+        super().__init__(ad, soyad, calisan_id)
+        self.aylik_maas = aylik_maas
+
+    def maas_hesapla(self):
+        return self.aylik_maas
+
+class YariZamanli(Calisan):
+    def __init__(self, ad, soyad, calisan_id, saat_ucreti, calisilan_saat):
+        super().__init__(ad, soyad, calisan_id)
+        self.saat_ucreti = saat_ucreti
+        self.calisilan_saat = calisilan_saat
+
+    def maas_hesapla(self):
+        return self.saat_ucreti * self.calisilan_saat
+
+def toplam_maas_hesapla(calisanlar):
+    return sum(calisan.maas_hesapla() for calisan in calisanlar)"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
